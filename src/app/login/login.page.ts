@@ -3,6 +3,7 @@ import { IonInput, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { Router } from '@angular/router';
 import { Login } from '../models/login.interface';
+import { User } from '../models/user.interface';
 import { QrScannerService } from '../services/qr-scanner.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -17,6 +18,20 @@ export class LoginPage implements OnInit {
   //* Instanciamos los inputs
   @ViewChild('username') username!: IonInput
   @ViewChild('pass') pass!: IonInput
+
+  //! Matias: Variable user sera la que contenga los datos de usuario 
+  user: User = {
+    cuil        : 0,
+    dir         : "",
+    email       : "",
+    id          : 0,
+    last_name   : "",
+    name        : "",
+    pass        : "",
+    phone       : "",
+    role        : "",
+    username    : ""
+  }
 
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
@@ -52,8 +67,14 @@ export class LoginPage implements OnInit {
     //! PODEMOS MANEJAR LOS BAD REQUEST!!
     this.api.login(form).subscribe({
       next: data => {
+
+        //! Matias: Extraemos el objeto usuario de la respuesta y lo asignamos a variable user 
+        this.user = data.result[0]
+
         console.log(data.token)
         this.cookieService.set('x-token', data.token) //* Guardamos el token en las cookies
+        
+        // TODO: Matias: CREAR UN SWITCH CASE DEPENDIENDO EL ROL DEL USUARIO
         this.router.navigate(['/dashboard'])
       },
       error: error => { console.log(error.error.msg) }
