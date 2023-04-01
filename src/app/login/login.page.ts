@@ -6,6 +6,7 @@ import { Login } from '../models/login.interface';
 import { User } from '../models/user.interface';
 import { QrScannerService } from '../services/qr-scanner.service';
 import { CookieService } from 'ngx-cookie-service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
   @ViewChild('username') username!: IonInput
   @ViewChild('pass') pass!: IonInput
 
-  //! Matias: Variable user sera la que contenga los datos de usuario 
+  //? Matias: Variable user sera la que contenga los datos de usuario 
   user: User = {
     cuil        : 0,
     dir         : "",
@@ -36,7 +37,12 @@ export class LoginPage implements OnInit {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
 
-  constructor(private api: QrScannerService, private router: Router, private cookieService: CookieService) { }
+  constructor(
+    private api           : QrScannerService, 
+    private router        : Router, 
+    private cookieService : CookieService,
+    private storage       : StorageService
+    ) { }
 
   ngOnInit() {
   }
@@ -68,8 +74,11 @@ export class LoginPage implements OnInit {
     this.api.login(form).subscribe({
       next: data => {
 
-        //! Matias: Extraemos el objeto usuario de la respuesta y lo asignamos a variable user 
+        //? Matias: Extraemos el objeto usuario de la respuesta y lo asignamos a variable user 
         this.user = data.result[0]
+        
+        //? Matias: guardamos el user object en string en localstorage
+        this.storage.setObject(this.user, 'user') //? key = 'user' 
 
         console.log(data.token)
         this.cookieService.set('x-token', data.token) //* Guardamos el token en las cookies
