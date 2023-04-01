@@ -1,82 +1,65 @@
-<ion-content class="ion-padding">
-  <ion-list style="margin-top: 60px; text-align: center">
-    <img src="../assets/images/login.png" alt="Login" height="60px" width="60px">
-    <h1>LOGIN</h1>
-  </ion-list>
+<ion-content>
+    <div class="login-wrapper">
+        <ion-card class="ion-text-center">
+            <ion-card-header class="ion-text-center">
+                <img src="../../assets/images/avatars.png" alt="">
+            </ion-card-header>
+            <ion-card-title>
+                <h2 style="text-align: center;">Ingresa a tu cuenta</h2>
+            </ion-card-title>
+            <ion-card-content class="ion-text-center">
+                <ion-grid>
+                    <ion-list>
+                        <ion-item>
+                            <ion-input #username label="Usuario" label-placement="floating" placeholder="Usuario"></ion-input>
+                        </ion-item>
+                        <br>
+                        <ion-item>
+                            <app-hide-show>
+                                <ion-input placeholder="Password" #pass type="password"></ion-input>
+                            </app-hide-show>
+                        </ion-item>
+                        <ion-row class="ion-justify-content-center ion-padding">
+                            <ion-col size="auto"><a style="color: gray" (click)="login()">Olvide la contrasena</a></ion-col>
+                        </ion-row>
+                    </ion-list>
+                </ion-grid>
+                <br>
+                <ion-button expand="block" style="--background:#76cea2; --background-hover:#76cea2;" routerLink="/login">Ingresa</ion-button>
+                <br>
+            </ion-card-content>
 
+        </ion-card>
+
+    </div>
+    <!-- 
     <ion-grid>
-      <ion-row>
-        <ion-item fill="outline">
-          <ion-label position="floating">User</ion-label>
-          <ion-input [clearInput]="true" #username type="text" placeholder="User name or email"></ion-input>
-        </ion-item>
-      </ion-row>
+        <ion-row>
+            <ion-item fill="outline">
+                <ion-label position="floating">User</ion-label>
+                <ion-input [clearInput]="true" #username type="text" placeholder="User name or email"></ion-input>
+            </ion-item>
+        </ion-row>
 
-      <ion-row style="margin-top: 20px;">
-        <ion-item fill="outline">
-          <ion-label position="floating">Password</ion-label>
+        <ion-row style="margin-top: 20px;">
+            <ion-item fill="outline">
+                <ion-label position="floating">Password</ion-label>
 
-          <!-- Hide - Show icon button (view the component) -->
-          <app-hide-show>
-            <ion-input placeholder="Password" #pass type="password"></ion-input>
-          </app-hide-show>
+                
+                <app-hide-show>
+                    <ion-input placeholder="Password" #pass type="password"></ion-input>
+                </app-hide-show>
 
-        </ion-item>
-      </ion-row>
+            </ion-item>
+        </ion-row>
 
-      <ion-row style="margin-top: 20px;">
-        <!-- Open modal to register form -->
-        <ion-col size="auto"><a style="color: gray" (click)="login()">Forgot password?</a></ion-col>
-        <ion-col style="text-align: end;"><a id="open-modal">Sign up!</a></ion-col>
+        <ion-row style="margin-top: 20px;">
+           
+            <ion-col size="auto"><a style="color: gray" (click)="login()">Forgot password?</a></ion-col>
+            <ion-col style="text-align: end;"><a id="open-modal">Sign up!</a></ion-col>
 
-      </ion-row>
+        </ion-row>
     </ion-grid>
+
+  -->
 </ion-content>
-<!-- Modal to register a new account -->
-<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancel()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Welcome</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Name</ion-label>
-          <ion-input placeholder="Enter name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Last name</ion-label>
-          <ion-input placeholder="Enter last name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">DNI</ion-label>
-          <ion-input placeholder="Enter DNI"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">User</ion-label>
-          <ion-input placeholder="Enter user name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <app-hide-show>
-            <ion-input type="password" placeholder="Enter password"></ion-input>
-          </app-hide-show>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Confirm Password</ion-label>
-          <app-hide-show>
-            <ion-input type="password" placeholder="Repeat password"></ion-input>
-          </app-hide-show>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ng-template>
-</ion-modal>

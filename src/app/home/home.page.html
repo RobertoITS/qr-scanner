@@ -1,37 +1,92 @@
 <ion-app>
-  <ion-content fullscreen class="ion-padding" scroll-y="false">
-    <ion-slides>
-      <ion-slide>
-        <div class="slide">
-          <img src="../assets/images/chat.png" alt="Hi" />
-          <h2>Bienvenido!</h2>
+
+    <ion-content fullscreen scroll-y="false">
+        <ion-slides pager="true">
+            <ion-slide>
+                <div class="wrapper">
+                    <div class="img-container">
+                        <img src="../assets/images/its-logo-512.jpg" alt="Hi" />
+                    </div>
+                    <div class="text-container">
+                        <h2>Bienvenido!</h2>
+                        <p>
+                            Te damos la bienvenida a nuestra aplicacion para control de asisitencias para alumnos o gestion para profesores.
+                        </p>
+                    </div>
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="wrapper">
+                    <div class="img-container">
+                        <img src="../assets/images/qr-code1.avif" alt="Hi" />
+                    </div>
+                    <div class="text-container">
+                        <h2>Para qué sirve?</h2>
+                        <p>
+                            Sirve para el control de asistencias a clases para los alumnos y registro para los profesores. <br><b>Usa tecnología QR para facilitar el trabajo</b>
+                        </p>
+                    </div>
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="wrapper">
+                    <div class="img-container">
+                        <img src="../assets/images/college1.avif" alt="Hi" />
+                    </div>
+                    <div class="text-container">
+                        <h2>A quién esta dirigida?</h2>
+                        <p>
+                            A los alumnos y ¡tambien a los profesores!. Totalmente <b>gratis</b> y con total <b>privacidad y resguardo de datos</b>.
+                        </p>
+                    </div>
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="wrapper">
+                    <div class="img-container">
+                        <img src="../assets/images/rocket2.avif" alt="Hi" />
+                    </div>
+                    <div class="text-container">
+                        <h2>Ingresa</h2>
+                        <p>El primer paso es acceder con tu cuenta.</p>
+                        <br>
+                        <a href="">No tengo cuenta</a>
+                        <ion-button style="--background:#76cea2; --background-hover:#76cea2;" routerLink="/login">Logueate</ion-button>
+                    </div>
+                </div>
+            </ion-slide>
+
+
+
+            <!-- <ion-slide>
+          <img src="../assets/images/qr-code.png" alt="Cash" />
+          <h2>En que no basamos?</h2>
           <p>
-            Te damos la bienvenida a nuestra aplicacion para control de asisitencias para alumnos o gestion para profesores.
+            Nos dedicamos al <b>control de asistencias a clases para el alumno, y registro para los profesores</b>. Escanea el codigo QR de cada clase para dar la asistencia a laa misma!
           </p>
-        </div>
-      </ion-slide>
+        </ion-slide>
+  
+        <ion-slide>
+          <img src="../assets/images/training.png" alt="Privacy" />
+          <h2>Para quien esta destinada?</h2>
+          <p>
+            Esta destinada para los alumnos y ¡tambien a los profesores!. Totalmente <b>gratis</b> y con total <b>privacidad y resguardo de datos</b>.
+          </p>
+        </ion-slide>
+  
+        <ion-slide>
+          <img src="../assets/images/go.png" alt="Money" />
+          <h2>Comenzamos?</h2>
+          <ion-button fill="clear" routerLink="/login" >Continuar <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide> -->
+        </ion-slides>
 
-      <ion-slide>
-        <img src="../assets/images/qr-code.png" alt="Cash" />
-        <h2>En que no basamos?</h2>
-        <p>
-          Nos dedicamos al <b>control de asistencias a clases para el alumno, y registro para los profesores</b>. Escanea el codigo QR de cada clase para dar la asistencia a laa misma!
-        </p>
-      </ion-slide>
 
-      <ion-slide>
-        <img src="../assets/images/training.png" alt="Privacy" />
-        <h2>Para quien esta destinada?</h2>
-        <p>
-          Esta destinada para los alumnos y ¡tambien a los profesores!. Totalmente <b>gratis</b> y con total <b>privacidad y resguardo de datos</b>.
-        </p>
-      </ion-slide>
 
-      <ion-slide>
-        <img src="../assets/images/go.png" alt="Money" />
-        <h2>Comenzamos?</h2>
-        <ion-button fill="clear" routerLink="/login" >Continuar <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
-      </ion-slide>
-    </ion-slides>
-  </ion-content>
+
+
+    </ion-content>
 </ion-app>
