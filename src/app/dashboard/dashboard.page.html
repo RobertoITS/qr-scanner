@@ -1,15 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border" color="light">
+    <ion-toolbar>
+        <ion-buttons slot="end" class="ion-margin-bottom">
+            <ion-button class="bordered" fill="solid" color="light">
+                <ion-icon name="notifications-outline" color="dark"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-item lines="none">
+        <ion-avatar slot="start" color="dark">
+            <img src="../../assets/images/avatar.png" alt="">
+        </ion-avatar>
+        <ion-label>
+            <p>Hola,</p>
+            <h3>{{user.name}} {{user.last_name}}</h3>
+        </ion-label>
+    </ion-item>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ token }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+    <div class="slides ion-margin-bottom">
+        <ion-slides [options]="slidesOptions">
+            <ion-slide *ngFor="let subject of subjects">
+                <ion-card>
+                    <ion-card-header>
+                        <div class="main">
+                            <img src="{{subject.img}}" alt="">
+                        </div>
+                    </ion-card-header>
+                    <ion-card-content class="ion-text-left">
+                        <ion-card-title class="ion-margin-bottom">{{subject.title}}</ion-card-title>
+                        <ion-card-subtitle class="ion-text-right">30%</ion-card-subtitle>
+                        <ion-progress-bar value="0.3" color="custom"></ion-progress-bar>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+        <div class="btn-container">
+            <ion-button expand="block" size="large" color="custom">Escanear
+                <ion-icon name="qr-code-outline" slot="end"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+    <div class="list-cont">
+        <h3>Actividad reciente</h3>
+        <ion-item lines="none" *ngFor="let activity of recentActivity">
+            <ion-grid>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="subject" size="6">{{activity.subj}}</ion-col>
+                    <ion-col size="1">
+                        <ion-icon color="light" name="time-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="3">{{activity.time}}</ion-col>
+                    <ion-col size="2">
+                        <ion-button color="light" fill="clear">
+                            <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </div>
 
-  <ion-button (click)="getUser()"></ion-button> <!--! TESTING -->
 </ion-content>

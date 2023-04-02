@@ -18,7 +18,7 @@ export class StorageService {
   }
 
   //? Matias: funcion para obtener objetos desde local storage
-  async getObject(key: string): Promise<Object>{
+  async getUser(key: string): Promise<User>{
     const strObj = await Preferences.get({key: key})
     const obj = JSON.parse(strObj.value!)
     return obj

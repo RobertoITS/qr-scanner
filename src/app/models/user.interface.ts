@@ -1,12 +1,15 @@
 export interface User {
-    cuil        : number,
-    dir         : string,
-    email       : string,
     id          : number,
     last_name   : string,
     name        : string,
+    cuil        : string,
+    dir         : string,
+    phone_number: string,
+    birthdate   : string,
+    age         : number,
+    email       : string,
+    user_name   : string
     pass        : string,
-    phone       : string,
     role        : string,
-    username    : string
+    file_number : string,
 }

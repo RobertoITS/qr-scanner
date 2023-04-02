@@ -21,17 +21,20 @@ export class LoginPage implements OnInit {
   @ViewChild('pass') pass!: IonInput
 
   //? Matias: Variable user sera la que contenga los datos de usuario 
-  user: User = {
-    cuil        : 0,
-    dir         : "",
-    email       : "",
-    id          : 0,
-    last_name   : "",
-    name        : "",
-    pass        : "",
-    phone       : "",
-    role        : "",
-    username    : ""
+  user: User =  {
+    id: 0,
+    last_name: "",
+    name: "",
+    cuil: "",
+    dir: "",
+    phone_number: "",
+    birthdate: "01/01/1990",
+    age: 32,
+    email: "mail@mail.com",
+    user_name: "",
+    pass: "",
+    role: "",
+    file_number: "123"
   }
 
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
