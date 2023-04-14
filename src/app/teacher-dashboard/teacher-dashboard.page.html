@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border" color="custom">
+    <ion-toolbar class="ion-padding-top">
+        <ion-buttons slot="start">
+            <ion-button (click)="openMenu()" class="bordered" fill="solid" color="light">
+                <ion-icon name="menu-outline" color="custom"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-item lines="none" class="ion-padding">
+
+            <ion-label color="light">
+                <p>Hola,</p>
+                <h3>{{user.name}}</h3>
+            </ion-label>
+        </ion-item>
+        <ion-avatar slot="end" class="ion-margin">
+            <img src="../../assets/images/avatar.png" alt="">
+        </ion-avatar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-menu contentId="main" menuId="main" side="start" type="overlay">
+        <ion-content>
+            <div class="menu-header-bg">
+                <h2>Menu</h2>
+            </div>
+            <ion-menu-toggle *ngFor="let item of menuItems">
+                <ion-item button lines="none" class="ion-align-items-center" routerLink="{{item.path}}" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}">
+                    <ion-col size="2">
+                        <ion-icon name="{{item.icon}}" color="light"></ion-icon>
+                    </ion-col>
+                    <ion-col class="title" size="10">
+                        <ion-label color="light">{{item.title}}</ion-label>
+                    </ion-col>
+                </ion-item>
+            </ion-menu-toggle>
+
+            <br>
+            <div class="hv-devs-mark">
+                <ion-label color="light">Desarrollado con ♥ por HV Devs</ion-label>
+            </div>
+
+
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main"></ion-router-outlet>
+</ion-content>

@@ -27,39 +27,12 @@
                 <br>
                 <ion-button expand="block" style="--background:#76cea2; --background-hover:#76cea2;" (click)="login()">Ingresa</ion-button>
                 <br>
+                <ion-spinner *ngIf="loading" name="circular" color="custom"></ion-spinner>
             </ion-card-content>
 
         </ion-card>
+        <br>
+
 
     </div>
-    <!-- 
-    <ion-grid>
-        <ion-row>
-            <ion-item fill="outline">
-                <ion-label position="floating">User</ion-label>
-                <ion-input [clearInput]="true" #username type="text" placeholder="User name or email"></ion-input>
-            </ion-item>
-        </ion-row>
-
-        <ion-row style="margin-top: 20px;">
-            <ion-item fill="outline">
-                <ion-label position="floating">Password</ion-label>
-
-                
-                <app-hide-show>
-                    <ion-input placeholder="Password" #pass type="password"></ion-input>
-                </app-hide-show>
-
-            </ion-item>
-        </ion-row>
-
-        <ion-row style="margin-top: 20px;">
-           
-            <ion-col size="auto"><a style="color: gray" (click)="login()">Forgot password?</a></ion-col>
-            <ion-col style="text-align: end;"><a id="open-modal">Sign up!</a></ion-col>
-
-        </ion-row>
-    </ion-grid>
-
-  -->
 </ion-content>

@@ -4,9 +4,15 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { Router } from '@angular/router';
 import { Login } from '../models/login.interface';
 import { User } from '../models/user.interface';
-import { QrScannerService } from '../services/qr-scanner.service';
+import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { StorageService } from '../services/storage.service';
+
+import { Store } from '@ngrx/store';
+import { AppState, selectAuthFeature, selectIsLoading } from '../state/app.state';
+import { login } from '../state/actions/auth.actions';
+import { Observable } from 'rxjs';
+import { selectIsLogged } from '../state/app.state';
 
 @Component({
   selector: 'app-login',
@@ -40,14 +46,25 @@ export class LoginPage implements OnInit {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
 
+  // example test
+  getState?: Observable<any> 
+
+  loading: boolean = false 
+
   constructor(
-    private api           : QrScannerService, 
+    private api           : AuthService, 
     private router        : Router, 
     private cookieService : CookieService,
-    private storage       : StorageService
-    ) { }
+    private storage       : StorageService,
+    private store         : Store<AppState>
+    ) {
+      this.store.select(selectIsLoading).subscribe(load => this.loading = load)
+     }
 
   ngOnInit() {
+    this.store.select(selectIsLoading).subscribe(load => this.loading = load)
+    // this.getState = this.store.select(selectFeaureCredentials)
+    console.warn(this.loading)
   }
 
   cancel() {
@@ -67,30 +84,43 @@ export class LoginPage implements OnInit {
 
   //! Funcion del LOGIN
   login() {
-
+    
     let form: Login = {
       username: this.username.value!.toString(),
       pass: this.pass.value!.toString()
     }
+    this.store.dispatch(login({credentials: form}))
+    
 
-    //! PODEMOS MANEJAR LOS BAD REQUEST!!
-    this.api.login(form).subscribe({
-      next: data => {
+  
 
-        //? Matias: Extraemos el objeto usuario de la respuesta y lo asignamos a variable user 
-        this.user = data.result[0]
+    
+    // //! PODEMOS MANEJAR LOS BAD REQUEST!!
+    // this.api.login(form).subscribe({
+    //   next: data => {
+
+    //     //? Matias: Extraemos el objeto usuario de la respuesta y lo asignamos a variable user 
+    //     this.user = data.result[0]
         
-        //? Matias: guardamos el user object en string en localstorage
-        this.storage.setObject(this.user, 'user') //? key = 'user' 
+    //     //? Matias: guardamos el user object en string en localstorage
+    //     this.storage.setObject(this.user, 'user') //? key = 'user' 
 
-        console.log(data.token)
-        this.cookieService.set('x-token', data.token) //* Guardamos el token en las cookies
+    //     //! experimental: Agregar el usuario al estado de la aplicacion 
+    //     // this.store.dispatch(loginUser, {})
+
+    //     console.log(data.token)
+    //     this.cookieService.set('x-token', data.token) //* Guardamos el token en las cookies
         
-        // TODO: Matias: CREAR UN SWITCH CASE DEPENDIENDO EL ROL DEL USUARIO
-        this.router.navigate(['/dashboard'])
-      },
-      error: error => { console.log(error.error.msg) }
-    })
+    //     // TODO: Matias: CREAR UN SWITCH CASE DEPENDIENDO EL ROL DEL USUARIO
+    //     if(this.user.role === "ALUMNO"){
+    //       this.router.navigate(['/dashboard'])
+    //     }
+    //     else {
+    //       this.router.navigate(['/teacher-dashboard'])
+    //     }
+    //   },
+    //   error: error => { console.log(error.error.msg) }
+    // })
   }
 
 }

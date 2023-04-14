@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
     canActivate: [UserGuard] //* Ruta protegida por el GUARD, usamos cookies
+  },
+  {
+    path: 'teacher-dashboard',
+    loadChildren: () => import('./teacher-dashboard/teacher-dashboard.module').then( m => m.TeacherDashboardPageModule)
   }
 
 ];

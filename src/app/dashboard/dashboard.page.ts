@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QrScannerService } from '../services/qr-scanner.service';
+import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.interface';
 import { Subject } from '../models/subject.interface';
 import { StorageService } from '../services/storage.service';
@@ -78,13 +78,13 @@ export class DashboardPage implements OnInit {
 
 
   constructor(
-    private api     : QrScannerService,
+    private api     : AuthService,
     private storage : StorageService, 
     private router  : Router
     ) { }
 
   ngOnInit() {
-    this.getUser
+    // this.getUser
     this.storage.getUser('user').then(user => {this.user = user})
   }
 
@@ -92,12 +92,12 @@ export class DashboardPage implements OnInit {
     slidesPerView: 1.3,
   }
 
-  //* Obtenemos los datos y manejamos los errores
-  getUser() {
-    this.api.getUsers().subscribe({
-      next: data => { console.log(data) },
-      error: err => { console.log(err.error.msg, err.statusText, err.ok) }
-    })
-  }
+  // //* Obtenemos los datos y manejamos los errores
+  // getUser() {
+  //   this.api.getUsers().subscribe({
+  //     next: data => { console.log(data) },
+  //     error: err => { console.log(err.error.msg, err.statusText, err.ok) }
+  //   })
+  // }
 
 }
